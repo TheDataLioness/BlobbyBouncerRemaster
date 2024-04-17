@@ -9,6 +9,7 @@
 #include <glm/gtx/quaternion.hpp>
 
 namespace luna {
+	using namespace glm;
 
 	constexpr float Pi          = 3.14159265359f;
 	constexpr float Tau         = 6.28318530718f;
@@ -28,6 +29,10 @@ namespace luna {
 		glm::vec3 position;
 		glm::vec3 rotation; // TODO: quaternions
 		glm::vec3 scale;
+
+		glm::mat3 rotationMatrix() const {
+			return glm::toMat3(glm::quat(rotation));
+		}
 
 		glm::mat4 matrix() const {
 			return glm::translate(glm::mat4(1.0f), position)

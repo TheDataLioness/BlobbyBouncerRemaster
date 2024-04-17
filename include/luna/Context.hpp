@@ -25,12 +25,14 @@ namespace luna {
 	float getTime();
 
 	const Mesh* getPrimitive(Primitive primitive);
-	Shader* getDefaultShader();
+	const Shader* getDefaultShader();
 	const Material* getDefaultMaterial();
 
 	void blit(const Texture* source, RenderTarget* target);
 	void blit(const Texture* source, RenderTarget* target, const Material* material);
 
 	bool isCloseRequested();
+
+	void uploadCameraMatrices(const glm::mat4& projection, const glm::mat4& view);
 
 }

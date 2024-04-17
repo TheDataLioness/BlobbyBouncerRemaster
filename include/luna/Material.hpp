@@ -8,19 +8,28 @@
 
 namespace luna {
 
+	enum class RenderQueue {
+		Solid = 1000,
+		Transparent = 2000
+	};
+
 	class Material {
 	public:
 		Material();
-		explicit Material(Shader* shader);
+		explicit Material(const Shader* shader);
 
-		void setShader(Shader* shader);
-		Shader* getShader() const;
+		void setShader(const Shader* shader);
+		const Shader* getShader() const;
+
+		void setRenderQueue(RenderQueue queue);
+		RenderQueue getRenderQueue() const;
 
 		void bind() const;
 
 		void setMainColor(Color value);
 		void setMainTexture(const Texture* value);
-		void setMainTextureScaleTranslation(const glm::vec4 value);
+		void setMainTextureScaleTranslation(glm::vec4 value);
+		void setMainTextureScaleTranslation(glm::vec2 scale, glm::vec2 translation);
 		void setValue(const char* name, float value);
 		void setValue(const char* name, glm::vec1 value);
 		void setValue(const char* name, glm::vec2 value);
@@ -59,7 +68,8 @@ namespace luna {
 		std::vector<Parameter<glm::vec4>> m_vec4Params;
 		std::vector<Parameter<glm::mat3>> m_mat3Params;
 		std::vector<Parameter<glm::mat4>> m_mat4Params;
-		Shader* m_shader = nullptr;
+		const Shader* m_shader = nullptr;
+		RenderQueue m_queue = RenderQueue::Solid;
 	};
 
 }

@@ -1,19 +1,36 @@
 #include "Sprite.h"
 #include <luna.hpp>
 
-Sprite::Sprite(const char* filepath, int frames)
+Sprite::Sprite(const char* filepath, FrameCountData frameCountData):
+	material(luna::Material(luna::getDefaultShader())),
+	texture(luna::Texture::loadFromFile(filepath)),
+	frameCountData(frameCountData)
 {
-	material = luna::Material(luna::getDefaultShader());
-	luna::Texture texture = luna::Texture::loadFromFile(filepath);
 	material.setMainTexture(&texture);
-	
+}
+
+void Sprite::SetFrame(int row, int column)
+{
+	float frameWidth = 1.0f / frameCountData.numCols;
+	float frameHeight = 1.0f / frameCountData.numRows;
+
+	float x = column * frameWidth;
+	float y = row * frameHeight;
+
+	material.setMainTextureScaleTranslation(glm::vec4(frameWidth, frameHeight, x, y));
 }
 
 void Sprite::Draw(glm::vec3 position, glm::vec3 scale, float rotation, luna::Renderer* renderer)
 {
+
+	glm::vec3 drawScale{ 
+		texture.getWidth()/pixelsPerUnit*frameCountData.numCols, 
+		texture.getHeight()/pixelsPerUnit*frameCountData.numRows, 1.0f };
+	drawScale *= scale;
+
 	renderer->push(
 		luna::getPrimitive(luna::Primitive::Quad),
-		luna::Transform(position, glm::vec3(0.0f, 0.0f, rotation), scale).matrix(),
+		luna::Transform(position, glm::vec3(0.0f, 0.0f, rotation), drawScale).matrix(),
 		&material
 	);
 }

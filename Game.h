@@ -7,6 +7,7 @@ namespace luna
 }
 
 class Sprite;
+class Blobby;
 
 class Game
 {
@@ -18,6 +19,7 @@ public:
 private:
 	luna::Camera* camera;
 	luna::Renderer* renderer;
-	Sprite* sprite;
+
+	Blobby* blobby;
 };
 

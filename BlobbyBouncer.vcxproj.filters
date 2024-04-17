@@ -5,6 +5,21 @@
     <ClInclude Include="Sprite.h">
       <Filter>utils</Filter>
     </ClInclude>
+    <ClInclude Include="AssetManager.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Blobby.h">
+      <Filter>objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
@@ -12,10 +27,31 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>utils</Filter>
     </ClCompile>
+    <ClCompile Include="AssetManager.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Blobby.cpp">
+      <Filter>objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="utils">
       <UniqueIdentifier>{f3d45f59-1dab-4d13-b846-dddec1346f48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="objects">
+      <UniqueIdentifier>{bd15cad9-f625-44e8-91e6-1b3e39c69fe2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components">
+      <UniqueIdentifier>{af6b9423-6cae-445d-929b-fa3d68097358}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

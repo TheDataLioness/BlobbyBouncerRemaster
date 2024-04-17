@@ -1,6 +1,8 @@
 #include "Game.h"
 #include <luna.hpp>
 #include "Sprite.h"
+#include "AssetManager.h"
+#include "Blobby.h"
 
 Game::Game(luna::Camera* camera_, luna::Renderer* renderer_) :
 	camera(camera_),
@@ -14,12 +16,16 @@ void Game::Initialize()
 	camera->setOrthographicSize(10.0f);
 	camera->setBackgroundColor(luna::Color::White);
 
-	// Load the sprite
-	sprite = new Sprite("assets/Blobby.png");
+	// Load assets
+	AssetManager& assetManager = AssetManager::GetInstance();
+	assetManager.GetSprite("assets/Blobby.png");
+	assetManager.GetSprite("assets/BlobbyFace.png");
+
+	blobby = new Blobby();
 }
 
 void Game::Tick(float deltaTime)
 {
-	// Draw the sprite
-	sprite->Draw(glm::vec3(0.0f), renderer);
+	blobby->Update(deltaTime);
+	blobby->Draw(renderer);
 }
