@@ -10,11 +10,13 @@ int main() {
 	luna::initialize();
 
 	luna::Window window;
-	luna::Renderer renderer;
+	luna::ForwardRenderer renderer;
 
 	luna::Camera camera(&window);
 	Game game(&camera, &renderer);
 	game.Initialize();
+
+	window.enableVSync(false);
 
 	while (!luna::isCloseRequested() && !window.isCloseRequested()) {
 		luna::update();
@@ -22,7 +24,7 @@ int main() {
 		renderer.beginFrame();
 
 		// Game tick
-		game.Tick(luna::getDeltatime());
+		game.Tick(luna::getDeltaTime());
 
 		renderer.endFrame();
 		renderer.render(camera);

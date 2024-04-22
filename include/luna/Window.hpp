@@ -6,6 +6,7 @@
 #include "RenderTexture.hpp"
 #include "ShaderProgram.hpp"
 #include "Mesh.hpp"
+#include "ImGuiContext.hpp"
 
 struct GLFWwindow;
 
@@ -28,6 +29,7 @@ namespace luna {
 		void close();
 
 		void lockCursor(bool lock = true);
+		void enableVSync(bool enable = true);
 
 		void makeActiveTarget() override;
 		glm::ivec2 getSize() const override;
@@ -35,6 +37,10 @@ namespace luna {
 		int getHeight() const override;
 
 		GLFWwindow* getInternalWindowPointer() const;
+
+#ifndef IMGUI_DISABLE
+		void makeActiveImGuiContext() const;
+#endif
 
 	private:
 		bool m_isValid;
@@ -44,6 +50,10 @@ namespace luna {
 		Mesh m_blitQuad;
 		ShaderProgram m_blitShader;
 		std::unique_ptr<RenderTexture> m_contents;
+
+#ifndef IMGUI_DISABLE
+		ImGuiContext m_imguiContext;
+#endif
 	};
 
 }

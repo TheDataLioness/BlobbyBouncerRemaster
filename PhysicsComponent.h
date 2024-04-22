@@ -26,6 +26,14 @@ class PhysicsComponent : public Component {
         glm::vec3 velocity;
         float mass;
 
+        float gravity = 9.8f;
+
+        glm::vec3 prevVelocity{0.0f};
+
+        // Debug
+        float groundDrag = 1.0f;
+        float maxY = -10000000000.0f;
+
         // States
         bool isGrounded = false;
 };

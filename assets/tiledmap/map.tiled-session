@@ -3,10 +3,27 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "map.tmx",
     "expandedProjectPaths": [
+        "."
     ],
     "fileStates": {
+        "Tilemap_Deco.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tilemap_Terrain.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "map.tmx": {
+            "scale": 2,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 137.25,
+                "y": -46.5
+            }
+        }
     },
     "last.exportedFilePath": "C:/Users/damie/Documents/BUas/Perforce/Damy232622_ws/Year1/selfstudy/BlobbyBouncer/assets/tiledmap",
     "last.imagePath": "C:/Users/damie/Documents/BUas/Perforce/Damy232622_ws/Year1/selfstudy/BlobbyBouncer/assets",
@@ -17,9 +34,15 @@
     "map.tileWidth": 16,
     "mapScene.enableWorlds": true,
     "openFiles": [
+        "Tilemap_Terrain.tsx",
+        "Tilemap_Deco.tsx",
+        "map.tmx"
     ],
     "project": "map.tiled-project",
     "recentFiles": [
+        "Tilemap_Terrain.tsx",
+        "Tilemap_Deco.tsx",
+        "map.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

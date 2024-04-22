@@ -2,7 +2,7 @@
 #include <luna.hpp>
 
 Sprite::Sprite(const char* filepath, FrameCountData frameCountData):
-	material(luna::Material(luna::getDefaultShader())),
+	material(*luna::getDefaultUnlitMaterial()),
 	texture(luna::Texture::loadFromFile(filepath)),
 	frameCountData(frameCountData)
 {
@@ -20,7 +20,7 @@ void Sprite::SetFrame(int row, int column)
 	material.setMainTextureScaleTranslation(glm::vec4(frameWidth, frameHeight, x, y));
 }
 
-void Sprite::Draw(glm::vec3 position, glm::vec3 scale, float rotation, luna::Renderer* renderer)
+void Sprite::Draw(glm::vec3 position, glm::vec3 scale, float rotation, luna::ForwardRenderer* renderer)
 {
 
 	glm::vec3 drawScale{ 
@@ -34,15 +34,15 @@ void Sprite::Draw(glm::vec3 position, glm::vec3 scale, float rotation, luna::Ren
 		&material
 	);
 }
-void Sprite::Draw(glm::vec3 position, glm::vec3 scale, luna::Renderer* renderer)
+void Sprite::Draw(glm::vec3 position, glm::vec3 scale, luna::ForwardRenderer* renderer)
 {
 	Draw(position, scale, 0.0f, renderer);
 }
-void Sprite::Draw(glm::vec3 position, float rotation, luna::Renderer* renderer)
+void Sprite::Draw(glm::vec3 position, float rotation, luna::ForwardRenderer* renderer)
 {
 	Draw(position, glm::vec3(1.0f), rotation, renderer);
 }
-void Sprite::Draw(glm::vec3 position, luna::Renderer* renderer)
+void Sprite::Draw(glm::vec3 position, luna::ForwardRenderer* renderer)
 {
 	Draw(position, glm::vec3(1.0f), 0.0f, renderer);
 }

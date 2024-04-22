@@ -15,10 +15,10 @@ public:
 
 	void SetFrame(int row, int column);
 
-	void Draw(glm::vec3 position, glm::vec3 scale, float rotation, luna::Renderer* renderer);
-	void Draw(glm::vec3 position, glm::vec3 scale, luna::Renderer* renderer);
-	void Draw(glm::vec3 position, float rotation, luna::Renderer* renderer);
-	void Draw(glm::vec3 position, luna::Renderer* renderer);
+	void Draw(glm::vec3 position, glm::vec3 scale, float rotation, luna::ForwardRenderer* renderer);
+	void Draw(glm::vec3 position, glm::vec3 scale, luna::ForwardRenderer* renderer);
+	void Draw(glm::vec3 position, float rotation, luna::ForwardRenderer* renderer);
+	void Draw(glm::vec3 position, luna::ForwardRenderer* renderer);
 
 	glm::vec3 GetScale() const { return glm::vec3(texture.getWidth() / pixelsPerUnit, texture.getHeight() / pixelsPerUnit, 1.0f); }
 

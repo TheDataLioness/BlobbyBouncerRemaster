@@ -55,14 +55,19 @@ void Blobby::Update(float deltaTime)
 			physicsComponent->ApplyImpulse(glm::vec3(xForce * 10.0 * jumpForce, 7.5f * jumpForce, 0.0f));
 			justJumped = true;
 			squishState.squishComplete = true;
+
+			squishState.squishComplete = false;
+			squishState.squash = true;
+			squishState.squish = 0.0f;
+			squishState.amplitude = jumpForce;
 		}
 
-		if (!grounded && justJumped) {
-			// Squish based on velocity
-			float squish = glm::clamp(abs(physicsComponent->GetVelocity().y), 0.0f, 10.0f);
-			squishState.squishScale.y = glm::mix(squishState.squishScale.y, 1.0f + (squish/10.0f), deltaTime * 2.0f);
-			squishState.squishScale.x = 1.0f / squishState.squishScale.y;
-		}
+		//if (!grounded && justJumped) {
+		//	// Squish based on velocity
+		//	float squish = abs(physicsComponent->GetVelocity().y);
+		//	squishState.squishScale.y = 1.0f + squish*squish*0.01f; //glm::mix(1.0f, 2.0f, squish);
+		//	squishState.squishScale.x = 1.0f / squishState.squishScale.y;
+		//}
 
 		// Update Squish
 		if (!wasGrounded && grounded)
@@ -81,43 +86,12 @@ void Blobby::Update(float deltaTime)
 		}
 
 		UpdateSquish(deltaTime);
-
-		if (!wasHoldingJump) {
-			// Movement
-			float moveSpeed = 40.0f;
-			float airMoveSpeed = 25.0f;
-			float walkJumpSpeed = 2.5f;
-			if ((luna::Input::isKeyDown(luna::Key::A) || luna::Input::isKeyDown(luna::Key::D)) && grounded)
-			{
-				physicsComponent->ApplyImpulse(glm::vec3(0.0f, walkJumpSpeed, 0.0f));
-			}
-			if (justJumped) {
-				if (luna::Input::isKeyDown(luna::Key::A))
-				{
-					physicsComponent->ApplyForce(glm::vec3(-airMoveSpeed, 0.0f, 0.0f), deltaTime);
-				}
-				if (luna::Input::isKeyDown(luna::Key::D))
-				{
-					physicsComponent->ApplyForce(glm::vec3(airMoveSpeed, 0.0f, 0.0f), deltaTime);
-				}
-			}
-			else {
-				if (luna::Input::isKeyDown(luna::Key::A))
-				{
-					physicsComponent->ApplyForce(glm::vec3(-moveSpeed, 0.0f, 0.0f), deltaTime);
-				}
-				if (luna::Input::isKeyDown(luna::Key::D))
-				{
-					physicsComponent->ApplyForce(glm::vec3(moveSpeed, 0.0f, 0.0f), deltaTime);
-				}
-			}
-		}
 	}
 	if(luna::Input::isKeyDown(luna::Key::A)) flipped = true;
 	if(luna::Input::isKeyDown(luna::Key::D)) flipped = false;
 }
 
-void Blobby::Draw(luna::Renderer* renderer)
+void Blobby::Draw(luna::ForwardRenderer* renderer)
 {
 	glm::vec3 drawScale = blobbyBody.body->GetScale();
 	glm::vec3 offset = glm::vec3(0.0f, drawScale.y * squishState.squishScale.y/2.0f, 0.0f);

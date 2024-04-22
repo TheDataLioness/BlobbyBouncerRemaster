@@ -34,7 +34,7 @@ public:
 	~Blobby() {};
 	void Update(float deltaTime) override;
 	void UpdateSquish(float deltaTime);
-	void Draw(luna::Renderer* renderer);
+	void Draw(luna::ForwardRenderer* renderer);
 private:
 	BlobbyBody blobbyBody;
 	SquishState squishState;
